@@ -8,10 +8,10 @@
 .. toctree::
    :maxdepth: 2
 
-   book/Part_I
-   book/Part_II
-   book/Part_III
-   book/Part_IV
-   book/Part_V
-   book/Part_VI
+   book/Part_01
+   book/Part_02
+   book/Part_03
+   book/Part_04
+   book/Part_05
+   book/Part_06
 
