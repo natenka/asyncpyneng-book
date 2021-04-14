@@ -17,8 +17,8 @@ I. Основы работы с сопрограммами
 .. toctree::
    :maxdepth: 1
 
-   asyncio_basics/asyncio_vs_threads
-   asyncio_basics/terms
-   asyncio_basics/basics
-   asyncio_basics/run_awaitables
-   asyncio_basics/further_reading
+   basics/asyncio_vs_threads
+   basics/terms
+   basics/basics
+   basics/run_awaitables
+   basics/further_reading

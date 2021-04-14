@@ -1,1 +1,1 @@
-# Async Python for network engineers
+# Основы asyncio для сетевых инженеров
