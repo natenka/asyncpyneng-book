@@ -18,7 +18,7 @@ III. Создание классов с asyncio
 
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    classes/init
    classes/context_manager
