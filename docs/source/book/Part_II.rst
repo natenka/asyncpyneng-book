@@ -15,8 +15,8 @@ II. Асинхронные модули
 .. toctree::
    :maxdepth: 1
 
-   2_1_asyncssh/index.rst
-   2_2_scrapli/index.rst
-   2_3_netdev/index.rst
-   2_4_async_http/index.rst
+   async_modules/2_1_asyncssh/index.rst
+   async_modules/2_2_scrapli/index.rst
+   async_modules/2_3_netdev/index.rst
+   async_modules/2_4_async_http/index.rst
 
