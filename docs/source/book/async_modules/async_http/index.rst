@@ -2,13 +2,13 @@
 
    \newpage
 
-asyncssh
-========
+async http
+==========
 
 
 .. toctree::
    :maxdepth: 1
 
-   asyncssh
+   aiohttp
+   httpx
    further_reading
-   ../../exercises/02_exercises.rst

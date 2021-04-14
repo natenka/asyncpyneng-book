@@ -2,13 +2,14 @@
 
    \newpage
 
-netdev
-======
+asyncssh
+========
 
 
 .. toctree::
    :maxdepth: 1
 
-   netdev
+   basics
+   wait_for
+   async_with
    further_reading
-   ../../exercises/04_exercises.rst
