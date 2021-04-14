@@ -5,6 +5,8 @@
 * генераторы
 * list comprehensions
 * run in thread
+* semaphore
+* subprocess
 
 
 .. toctree::
@@ -14,4 +16,6 @@
    using_asyncio/decorator
    using_asyncio/generator
    using_asyncio/to_thread
+   using_asyncio/semaphore
+   using_asyncio/subprocess
 
