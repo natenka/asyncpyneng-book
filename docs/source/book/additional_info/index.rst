@@ -7,5 +7,5 @@
 .. toctree::
    :maxdepth: 1
 
-   additional_info/fastapi_test_server
+   fastapi_test_server
 

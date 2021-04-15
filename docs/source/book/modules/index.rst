@@ -15,8 +15,8 @@
 .. toctree::
    :maxdepth: 1
 
-   modules/asyncssh/index
-   modules/scrapli/index
-   modules/netdev/index
-   modules/further_reading
+   asyncssh/index
+   scrapli/index
+   netdev/index
+   further_reading
 

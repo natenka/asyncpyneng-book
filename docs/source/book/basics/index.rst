@@ -17,8 +17,8 @@
 .. toctree::
    :maxdepth: 1
 
-   basics/asyncio_vs_threads
-   basics/terms
-   basics/basics
-   basics/run_awaitables
-   basics/further_reading
+   asyncio_vs_threads
+   terms
+   basics
+   run_awaitables
+   further_reading

@@ -6,6 +6,6 @@
 .. toctree::
    :maxdepth: 2
 
-   event_loop/basics
-   event_loop/cancel_tasks
+   basics
+   cancel_tasks
 

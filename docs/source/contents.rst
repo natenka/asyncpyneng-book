@@ -8,10 +8,10 @@
 .. toctree::
    :maxdepth: 2
 
-   book/Part_01
-   book/Part_02
+   book/basics/index
+   book/modules/index
    book/classes/index
-   book/Part_04
-   book/Part_05
-   book/Part_06
+   book/using_asyncio/index
+   book/event_loop/index
+   book/additional_info/index
 
