@@ -10,7 +10,7 @@
 
    book/Part_01
    book/Part_02
-   book/Part_03
+   book/classes/index
    book/Part_04
    book/Part_05
    book/Part_06

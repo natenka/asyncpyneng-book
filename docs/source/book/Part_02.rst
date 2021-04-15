@@ -18,6 +18,5 @@
    modules/asyncssh/index
    modules/scrapli/index
    modules/netdev/index
-   modules/async_http/index
    modules/further_reading
 
