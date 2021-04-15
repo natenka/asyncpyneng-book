@@ -23,4 +23,5 @@
    init
    context_manager
    iteration
+   examples
 
