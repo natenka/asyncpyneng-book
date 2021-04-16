@@ -21,6 +21,8 @@
         async def _scan_device(self, ip):
             params = {**self.common_ssh_params, "host": ip}
             try:
+                # эта строка добавлена из-за транспорта asynctelnet
+                # в текущей версии scrapli по умолчанию большой таймаут
                 async with timeout(5):
                     async with AsyncScrapli(**params) as conn:
                         prompt = await conn.get_prompt()
