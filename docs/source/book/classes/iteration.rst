@@ -30,8 +30,10 @@
 .. code:: python
 
     import asyncio
+    from datetime import datetime
     from scrapli import AsyncScrapli
     from scrapli.exceptions import ScrapliException
+    from async_timeout import timeout
     import yaml
 
 
@@ -43,9 +45,10 @@
         async def _scan_device(self, device):
             ip = device["host"]
             try:
-                async with AsyncScrapli(**device) as conn:
-                    prompt = await conn.get_prompt()
-                return True, prompt
+                async with timeout(5): # для asynctelnet
+                    async with AsyncScrapli(**device) as conn:
+                        prompt = await conn.get_prompt()
+                    return True, prompt
             except (ScrapliException, asyncio.exceptions.TimeoutError) as error:
                 return False, f"{error} {ip}"
 
@@ -77,61 +80,106 @@ True и приглашение устройства, если нет - False и 
         check = CheckConnection(devices)
         async for status, msg in check:
             if status:
-                print(f"SSH. Подключение успешно: {msg}")
+                print(f"{datetime.now()} SSH. Подключение успешно: {msg}")
             else:
-                print(f"SSH. Не удалось подключиться: {msg}")
+                print(f"{datetime.now()} SSH. Не удалось подключиться: {msg}")
 
 
     if __name__ == "__main__":
-        with open("devices_async.yaml") as f:
+        with open("devices_asyncssh.yaml") as f:
             devices = yaml.safe_load(f)
         asyncio.run(ssh_scan(devices))
 
-Содержимое файла devices_async.yaml (первые два устройства доступны и с правильными
+Содержимое файла devices_asyncssh.yaml (первые два устройства доступны и с правильными
 параметрами, третье доступно, но указан неправильный пароль, четвертое недоступно):
 
-.. toggle-header::
-    :header: Example 1 **Show/Hide Code**
+.. code:: yaml
 
-        .. code:: yaml
+    - host: 192.168.100.1
+      auth_username: cisco
+      auth_password: cisco
+      auth_secondary: cisco
+      auth_strict_key: false
+      timeout_socket: 5
+      timeout_transport: 10
+      platform: cisco_iosxe
+      transport: asyncssh
+    - host: 192.168.100.2
+      auth_username: cisco
+      auth_password: cisco
+      auth_secondary: cisco
+      auth_strict_key: false
+      timeout_socket: 5
+      timeout_transport: 10
+      platform: cisco_iosxe
+      transport: asyncssh
+    - host: 192.168.100.3
+      auth_username: cisco
+      auth_password: ciscoe
+      auth_secondary: cisco
+      auth_strict_key: false
+      timeout_socket: 5
+      timeout_transport: 10
+      platform: cisco_iosxe
+      transport: asyncssh
+    - host: 192.168.100.11
+      auth_username: cisco
+      auth_password: cisco
+      auth_secondary: cisco
+      auth_strict_key: false
+      timeout_socket: 5
+      timeout_transport: 10
+      platform: cisco_iosxe
+      transport: asyncssh
 
-            - host: 192.168.100.1
-              auth_username: cisco
-              auth_password: cisco
-              auth_secondary: cisco
-              auth_strict_key: false
-              timeout_socket: 5
-              timeout_transport: 10
-              platform: cisco_iosxe
-              transport: asyncssh
-            - host: 192.168.100.2
-              auth_username: cisco
-              auth_password: cisco
-              auth_secondary: cisco
-              auth_strict_key: false
-              timeout_socket: 5
-              timeout_transport: 10
-              platform: cisco_iosxe
-              transport: asyncssh
-            - host: 192.168.100.3
-              auth_username: cisco
-              auth_password: ciscoe
-              auth_secondary: cisco
-              auth_strict_key: false
-              timeout_socket: 5
-              timeout_transport: 10
-              platform: cisco_iosxe
-              transport: asyncssh
-            - host: 192.168.100.11
-              auth_username: cisco
-              auth_password: cisco
-              auth_secondary: cisco
-              auth_strict_key: false
-              timeout_socket: 5
-              timeout_transport: 10
-              platform: cisco_iosxe
-              transport: asyncssh
+Вызов скрипта:
+
+::
+
+    $ python ex05_async_iterator_ssh.py
+    2021-04-19 11:25:40.775305 SSH. Подключение успешно: R1#
+    2021-04-19 11:25:41.334456 SSH. Подключение успешно: R2#
+    2021-04-19 11:25:43.638459 SSH. Не удалось подключиться: all authentication methods failed 192.168.100.3
+    2021-04-19 11:25:48.647160 SSH. Не удалось подключиться: timed out opening connection to device 192.168.100.11
+
 
 Итератор CheckConnection проверяет устройства последовательно, но вместе с этим
 итератором, параллельно можно запускать что-то еще, например, паралелльно проверять
-подключение telnet.
+подключение telnet (файл ex06_async_iterator_telnet_ssh.py):
+
+.. code:: python
+
+    async def scan(devices, protocol):
+        check = CheckConnection(devices)
+        async for status, msg in check:
+            if status:
+                print(f"{datetime.now()} {protocol}. Подключение успешно: {msg}")
+            else:
+                print(f"{datetime.now()} {protocol}. Не удалось подключиться: {msg}")
+
+
+    async def main():
+        with open("devices_asyncssh.yaml") as f:
+            devices_ssh = yaml.safe_load(f)
+        with open("devices_asynctelnet.yaml") as f:
+            devices_telnet = yaml.safe_load(f)
+        await asyncio.gather(scan(devices_ssh, "SSH"), scan(devices_telnet, "Telnet"))
+
+
+    if __name__ == "__main__":
+        asyncio.run(main())
+
+Вызов скрипта:
+
+::
+
+    $ python ex06_async_iterator_telnet_ssh.py
+    2021-04-19 11:30:14.820195 SSH. Подключение успешно: R1#
+    2021-04-19 11:30:14.983307 Telnet. Подключение успешно: R1#
+    2021-04-19 11:30:15.296011 SSH. Подключение успешно: R2#
+    2021-04-19 11:30:15.449338 Telnet. Подключение успешно: R2#
+    2021-04-19 11:30:17.599259 SSH. Не удалось подключиться: all authentication methods failed 192.168.100.3
+    2021-04-19 11:30:19.775107 Telnet. Не удалось подключиться: username/login prompt seen more than once, assuming auth failed 192.168.100.3
+    2021-04-19 11:30:22.603411 SSH. Не удалось подключиться:  192.168.100.11
+    2021-04-19 11:30:24.777987 Telnet. Не удалось подключиться:  192.168.100.11
+
