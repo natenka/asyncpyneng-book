@@ -24,15 +24,14 @@
 Тут рассматривается вариант через классы, а в следующем разделе рассматриваются
 асинхронные генераторы.
 
-Пример асинхронного итератора:
+Пример асинхронного итератора, который на каждой итерации пытается подключиться к
+одному устройству с помощью scrapli:
 
 .. code:: python
 
     import asyncio
-    from pprint import pprint
     from scrapli import AsyncScrapli
     from scrapli.exceptions import ScrapliException
-    from async_timeout import timeout
     import yaml
 
 
@@ -44,10 +43,9 @@
         async def _scan_device(self, device):
             ip = device["host"]
             try:
-                async with timeout(5):
-                    async with AsyncScrapli(**device) as conn:
-                        prompt = await conn.get_prompt()
-                    return True, prompt
+                async with AsyncScrapli(**device) as conn:
+                    prompt = await conn.get_prompt()
+                return True, prompt
             except (ScrapliException, asyncio.exceptions.TimeoutError) as error:
                 return False, f"{error} {ip}"
 
@@ -55,13 +53,25 @@
             if self._current_device >= len(self.device_list):
                 raise StopAsyncIteration
             device_params = self.device_list[self._current_device]
-            self._current_device += 1
             scan_results = await self._scan_device(device_params)
+            self._current_device += 1
             return scan_results
 
         def __aiter__(self):
             return self
 
+Смысл этого итератора в том чтобы проверить получится ли подключиться к оборудованию
+по SSH с помощью scrapli. Если подключиться получилось, ``__anext__`` возвращает
+True и приглашение устройства, если нет - False и исключение.
+
+.. note::
+
+    Обратите внимание на то, что метод ``__anext__`` сопрограмма, а ``__aiter__`` нет.
+
+Для перебора асинхронного итератора надо использовать ``async for`` и соответственно
+перебор надо делать в сопрограмме:
+
+.. code:: python
 
     async def ssh_scan(devices):
         check = CheckConnection(devices)
@@ -76,4 +86,46 @@
         with open("devices_async.yaml") as f:
             devices = yaml.safe_load(f)
         asyncio.run(ssh_scan(devices))
+
+Содержимое файла devices_async.yaml (первые два устройства доступны и с правильными
+параметрами, третье доступно, но указан неправильный пароль, четвертое недоступно):
+
+.. code:: yaml
+
+    - host: 192.168.100.1
+      auth_username: cisco
+      auth_password: cisco
+      auth_secondary: cisco
+      auth_strict_key: false
+      timeout_socket: 5
+      timeout_transport: 10
+      platform: cisco_iosxe
+      transport: asyncssh
+    - host: 192.168.100.2
+      auth_username: cisco
+      auth_password: cisco
+      auth_secondary: cisco
+      auth_strict_key: false
+      timeout_socket: 5
+      timeout_transport: 10
+      platform: cisco_iosxe
+      transport: asyncssh
+    - host: 192.168.100.3
+      auth_username: cisco
+      auth_password: ciscoe
+      auth_secondary: cisco
+      auth_strict_key: false
+      timeout_socket: 5
+      timeout_transport: 10
+      platform: cisco_iosxe
+      transport: asyncssh
+    - host: 192.168.100.11
+      auth_username: cisco
+      auth_password: cisco
+      auth_secondary: cisco
+      auth_strict_key: false
+      timeout_socket: 5
+      timeout_transport: 10
+      platform: cisco_iosxe
+      transport: asyncssh
 

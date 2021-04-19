@@ -12,11 +12,6 @@
 Методы класса могут быть сопрограммами или обычными функциями.
 
 
-* async class
-* async with
-* async for
-
-
 .. toctree::
    :maxdepth: 2
 
