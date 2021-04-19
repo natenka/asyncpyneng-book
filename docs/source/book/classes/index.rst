@@ -13,7 +13,7 @@
 
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    init
    context_manager

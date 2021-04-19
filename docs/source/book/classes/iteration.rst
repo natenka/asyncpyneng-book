@@ -90,42 +90,45 @@ True и приглашение устройства, если нет - False и 
 Содержимое файла devices_async.yaml (первые два устройства доступны и с правильными
 параметрами, третье доступно, но указан неправильный пароль, четвертое недоступно):
 
-.. code:: yaml
+.. toggle-header::
+    :header: Example 1 **Show/Hide Code**
 
-    - host: 192.168.100.1
-      auth_username: cisco
-      auth_password: cisco
-      auth_secondary: cisco
-      auth_strict_key: false
-      timeout_socket: 5
-      timeout_transport: 10
-      platform: cisco_iosxe
-      transport: asyncssh
-    - host: 192.168.100.2
-      auth_username: cisco
-      auth_password: cisco
-      auth_secondary: cisco
-      auth_strict_key: false
-      timeout_socket: 5
-      timeout_transport: 10
-      platform: cisco_iosxe
-      transport: asyncssh
-    - host: 192.168.100.3
-      auth_username: cisco
-      auth_password: ciscoe
-      auth_secondary: cisco
-      auth_strict_key: false
-      timeout_socket: 5
-      timeout_transport: 10
-      platform: cisco_iosxe
-      transport: asyncssh
-    - host: 192.168.100.11
-      auth_username: cisco
-      auth_password: cisco
-      auth_secondary: cisco
-      auth_strict_key: false
-      timeout_socket: 5
-      timeout_transport: 10
-      platform: cisco_iosxe
-      transport: asyncssh
+        .. code:: yaml
+
+            - host: 192.168.100.1
+              auth_username: cisco
+              auth_password: cisco
+              auth_secondary: cisco
+              auth_strict_key: false
+              timeout_socket: 5
+              timeout_transport: 10
+              platform: cisco_iosxe
+              transport: asyncssh
+            - host: 192.168.100.2
+              auth_username: cisco
+              auth_password: cisco
+              auth_secondary: cisco
+              auth_strict_key: false
+              timeout_socket: 5
+              timeout_transport: 10
+              platform: cisco_iosxe
+              transport: asyncssh
+            - host: 192.168.100.3
+              auth_username: cisco
+              auth_password: ciscoe
+              auth_secondary: cisco
+              auth_strict_key: false
+              timeout_socket: 5
+              timeout_transport: 10
+              platform: cisco_iosxe
+              transport: asyncssh
+            - host: 192.168.100.11
+              auth_username: cisco
+              auth_password: cisco
+              auth_secondary: cisco
+              auth_strict_key: false
+              timeout_socket: 5
+              timeout_transport: 10
+              platform: cisco_iosxe
+              transport: asyncssh
 
