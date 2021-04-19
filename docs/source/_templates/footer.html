@@ -24,17 +24,9 @@
         &copy; <a href="https://natenka.github.io/thanks/"> {{ copyright }}.</a>
       {%- endif %}
     {%- endif %}
-    {%- if build_id and build_url %}
-      <span class="build">
-        {# Translators: Build is a noun, not a verb #}
-        {% trans %}Build{% endtrans %}
-        <a href="{{ build_url }}">{{ build_id }}</a>.
-      </span>
-    {%- elif last_updated %}
-      <span class="lastupdated">
-        Last updated on {{ last_updated }}.
-      </span>
-    {%- endif %}
+    <span class="lastupdated">
+        {% trans last_updated=last_updated|e %}Last updated on {{ last_updated }}.{% endtrans %}
+    </span>
     <a href="https://asyncpyneng.readthedocs.io/ru/latest/download.html">Скачать книгу.</a>
     </p>
   </div>
