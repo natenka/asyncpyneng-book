@@ -3,7 +3,7 @@
 
 В этом разделе рассматриваются асинхронные версии привычного функционала Python:
 
-* list comprehensions
+* list/dict/set comprehensions
 * декораторы для сопрограмм
 * асинхронные генераторы
 * asyncio subprocess
