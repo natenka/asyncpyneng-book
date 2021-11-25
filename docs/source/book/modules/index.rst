@@ -17,6 +17,5 @@
 
    asyncssh/index
    scrapli/index
-   netdev/index
    further_reading
 
