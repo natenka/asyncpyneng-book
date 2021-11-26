@@ -114,7 +114,8 @@ asyncio.create_task. Она возвращает объект Task, которы
 
 .. code:: python
 
-    asyncio.create_task(coro)
+    asyncio.create_task(coro, *, name=None)
+
 
 Функция asyncio.create_task позволяет запускать сопрограммы одновременно, так как
 создание задачи означает для цикла, что надо запустить эту сопрограмму при первой
