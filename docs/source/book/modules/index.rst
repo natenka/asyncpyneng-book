@@ -9,7 +9,6 @@
 
 * asyncssh
 * scrapli
-* netdev
 
 
 .. toctree::
