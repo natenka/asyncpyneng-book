@@ -15,4 +15,3 @@ asyncssh
    wait_for
    async_with
    concurrent
-   further_reading
