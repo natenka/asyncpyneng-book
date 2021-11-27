@@ -4,13 +4,21 @@
 Документация:
 
 * `Модуль asyncio <https://docs.python.org/3.7/library/asyncio.html>`__
-* `asyncssh <https://asyncssh.readthedocs.io/en/latest/>`__
-* `Примеры asyncssh <https://asyncssh.readthedocs.io/en/stable/#client-examples>`__
-* `scrapli <https://carlmontanari.github.io/scrapli/>`__
-* `netdev <http://netdev.readthedocs.io/>`__
 * `aiofiles <https://github.com/Tinche/aiofiles>`__
 * `aiohttp <https://docs.aiohttp.org/en/stable/>`__
 * `async-timeout <https://github.com/aio-libs/async-timeout>`__
+
+
+asyncssh:
+
+* `asyncssh <https://asyncssh.readthedocs.io/en/latest/>`__
+* `Примеры asyncssh <https://asyncssh.readthedocs.io/en/stable/#client-examples>`__
+
+scrapli:
+
+* `scrapli <https://carlmontanari.github.io/scrapli/>`__
+* `основы и подключение к нескольким устройствам <https://github.com/natenka/pyneng-examples/tree/main/asyncio/asyncio02_libs/scrapli>`__
+* `основы, scrapli-cfg, NETCONF <https://github.com/dmfigol/network-programmability-stream/tree/master/scrapli-apps>`__ 
 
 Полезные ссылки:
 
@@ -25,4 +33,3 @@
 
 * `asyncssh <https://github.com/natenka/pyneng-examples/tree/main/asyncio/asyncio02_libs/asynssh>`__
 * `scrapli <https://github.com/natenka/pyneng-examples/tree/main/asyncio/asyncio02_libs/scrapli>`__
-* `netdev <https://github.com/natenka/pyneng-examples/tree/main/asyncio/asyncio02_libs/netdev>`__
