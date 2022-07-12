@@ -12,6 +12,7 @@ asyncssh, но при этом создает интерфейс и методы
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    basics
    concurrent

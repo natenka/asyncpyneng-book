@@ -13,6 +13,7 @@
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    asyncssh/index
    scrapli/index

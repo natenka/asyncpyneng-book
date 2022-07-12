@@ -10,6 +10,7 @@ asyncssh
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    basics
    wait_for

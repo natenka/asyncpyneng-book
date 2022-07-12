@@ -16,6 +16,7 @@
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    asyncio_vs_threads
    terms

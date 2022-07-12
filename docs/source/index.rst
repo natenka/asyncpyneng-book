@@ -1,11 +1,6 @@
 Основы asyncio для сетевых инженеров
 ====================================
 
-.. warning::
-
-    Книга в процессе написания!
-    Написаны разделы 1-3.
-
 В книге рассматриваются практическое применение asyncio для работы с сетевым
 оборудованием. Не рассматривается зачем и почему сетевому инженеру вдруг нужно
 разбираться с asyncio, но возможно будет в более поздних версиях книги.
@@ -24,6 +19,7 @@
 
 .. toctree::
    :maxdepth: 2
+   :hidden:
 
    book/basics/index
    book/modules/index
@@ -32,3 +28,11 @@
    book/event_loop/index
    book/additional_info/index
    download
+
+
+.. toctree::
+   :caption: Ресурсы
+   :maxdepth: 1
+   :hidden:
+
+   Задания, примеры кода <https://github.com/natenka/advpyneng-examples-exercises>

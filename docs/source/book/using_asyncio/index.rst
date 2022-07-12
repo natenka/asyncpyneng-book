@@ -25,6 +25,7 @@
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    list_comprehensions
    decorator

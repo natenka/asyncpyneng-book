@@ -14,6 +14,7 @@
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    init
    context_manager

@@ -6,6 +6,7 @@
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    fastapi_test_server
    netdev/index
